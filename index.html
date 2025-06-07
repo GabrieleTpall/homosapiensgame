@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Futuro da Homo Sapiens</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f0f8ff; padding: 2em; }
+    .container { max-width: 700px; margin: auto; background: white; padding: 2em; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+    h1 { text-align: center; }
+    .scenario { margin: 2em 0; }
+    .question { font-weight: bold; }
+    .options button { display: block; margin: 1em 0; padding: 1em; width: 100%; border: none; border-radius: 5px; background: #d3eaff; cursor: pointer; }
+    .result { font-weight: bold; color: #2e8b57; margin-top: 2em; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 Futuro da Homo Sapiens</h1>
+    <div id="game">
+      <div class="scenario" id="scenario"></div>
+      <div class="options" id="options"></div>
+      <div class="result" id="result"></div>
+    </div>
+  </div>
+  <script>
+    const scenes = [
+      {
+        text: "Anno 2050: Il mondo è in crisi climatica. Sei a capo di un progetto globale. Cosa scegli di finanziare?",
+        options: [
+          { text: "Centrali a carbone di nuova generazione", result: "⚠️ Sei tornato all'età del fumo. Il cielo è color catrame.", next: 0 },
+          { text: "Fonti rinnovabili decentralizzate", result: "✅ L'umanità respira e tu sei l'eroe verde!", next: 1 }
+        ]
+      },
+      {
+        text: "Anno 2070: L'acqua potabile scarseggia. Come reagisci?",
+        options: [
+          { text: "Privatizzazione e bottiglie dorate", result: "💸 Il popolo ti adora... in una rivolta epica.", next: 0 },
+          { text: "Censimento e tutela delle fontanelle pubbliche", result: "💧 I bambini bevono, il pianeta ringrazia.", next: 2 }
+        ]
+      },
+      {
+        text: "Anno 2100: L'IA propone di governare il mondo. Cosa fai?",
+        options: [
+          { text: "Le dai il potere assoluto", result: "🤖 Bentornato in Matrix. La libertà è un ricordo.", next: 0 },
+          { text: "Usi l'IA come supporto etico e tecnico", result: "🧠 L'umanità evolve... anche grazie a te.", next: null }
+        ]
+      }
+    ];
+
+    let currentScene = 0;
+
+    function showScene() {
+      const s = scenes[currentScene];
+      document.getElementById('scenario').textContent = s.text;
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      document.getElementById('result').textContent = '';
+
+      s.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = opt.text;
+        btn.onclick = () => {
+          document.getElementById('result').textContent = opt.result;
+          if (opt.next !== null) {
+            currentScene = opt.next;
+            setTimeout(showScene, 2500);
+          } else {
+            document.getElementById('options').innerHTML = '<p>🎉 Hai completato il gioco. Evoluzione compiuta!</p>';
+          }
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    showScene();
+  </script>
+</body>
+</html>
