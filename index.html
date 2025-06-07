@@ -2,91 +2,240 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Futuro da Homo Sapiens</title>
+  <title>Quiz sul Futuro</title>
   <style>
     body { font-family: Arial, sans-serif; background-color: #f0f8ff; padding: 2em; }
     .container { max-width: 700px; margin: auto; background: white; padding: 2em; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
     h1 { text-align: center; }
-    .scenario { margin: 2em 0; }
-    .question { font-weight: bold; }
+    .question { margin: 2em 0; font-weight: bold; }
     .options button { display: block; margin: 1em 0; padding: 1em; width: 100%; border: none; border-radius: 5px; background: #d3eaff; cursor: pointer; }
-    .result { font-weight: bold; color: #2e8b57; margin-top: 2em; }
+    .result { font-weight: bold; color: #2e8b57; margin-top: 1em; }
     .letter { margin-top: 2em; background: #f9f9f9; border-left: 4px solid #2e8b57; padding: 1em; font-style: italic; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🌍 Futuro da Homo Sapiens</h1>
-    <div id="game">
-      <div class="scenario" id="scenario"></div>
-      <div class="options" id="options"></div>
-      <div class="result" id="result"></div>
-      <div class="letter" id="letter"></div>
-    </div>
+    <h1>Quiz sul Futuro</h1>
+    <div id="question" class="question"></div>
+    <div id="options" class="options"></div>
+    <div id="result" class="result"></div>
+    <div id="letter" class="letter"></div>
   </div>
   <script>
-    const letters = [
-      "Mi chiamo Luma. Sono nata nel 2135. Oggi esco all’alba perché le temperature superano i 50°C nel pomeriggio. La nostra città vive sottoterra. Un tempo, l’aria era gratis. Poi l’abbiamo venduta al carbonio.",
-      "Qui il mare è salato anche sulle montagne. I ghiacciai sono un ricordo, come i tuoi inverni da bambino. Beviamo acqua da riciclo. Ogni goccia è tracciata. Invidio le tue fontanelle, libere e fredde.",
-      "Sono Y2K-Beta. Sì, un’IA senziente. Vi abbiamo superati, ma ci mancano i vostri sogni. Tu hai scelto l’etica. Ricordatelo. I dati non ridono. Ma voi sì.",
-      "Questa è la Base Azzurra su Marte. I bambini disegnano la Terra con nostalgia. Le loro radici sono rosse. Ma nei musei interattivi c’è una sezione: la tua epoca. L’era che ha deciso di cambiare.",
-      "Nel 2200 abbiamo finalmente smesso di misurare tutto col PIL. Ora contiamo sogni realizzati, abbracci dati, foreste lasciate in pace. Sei stato uno di quelli che ha iniziato tutto."
+    const questions = [
+      { q: "Qual è la forma di energia rinnovabile più utilizzata oggi?", answers: [
+          { text: "Energia solare", correct: true },
+          { text: "Carbone", correct: false },
+          { text: "Petrolio", correct: false }
+        ] },
+      { q: "Cosa significa \"riciclo\"?", answers: [
+          { text: "Riutilizzare materiali già usati", correct: true },
+          { text: "Bruciare rifiuti", correct: false },
+          { text: "Gettare via oggetti vecchi", correct: false }
+        ] },
+      { q: "Quale di questi mezzi di trasporto ha l'impatto ambientale minore?", answers: [
+          { text: "Bicicletta", correct: true },
+          { text: "Automobile a benzina", correct: false },
+          { text: "Moto", correct: false }
+        ] },
+      { q: "Qual è lo scopo principale dell'Agenda 2030 delle Nazioni Unite?", answers: [
+          { text: "Raggiungere sviluppo sostenibile", correct: true },
+          { text: "Aumentare il commercio mondiale", correct: false },
+          { text: "Espandere il turismo", correct: false }
+        ] },
+      { q: "Quale gas serra viene prodotto in grande quantità dagli allevamenti intensivi?", answers: [
+          { text: "Metano", correct: true },
+          { text: "Ossigeno", correct: false },
+          { text: "Elio", correct: false }
+        ] },
+      { q: "Quale simbolo indica la plastica riciclabile?", answers: [
+          { text: "Tre frecce che formano un triangolo", correct: true },
+          { text: "Un cerchio rosso barrato", correct: false },
+          { text: "Una stella blu", correct: false }
+        ] },
+      { q: "Cosa indica la sigla \"CO2\"?", answers: [
+          { text: "Anidride carbonica", correct: true },
+          { text: "Ossigeno puro", correct: false },
+          { text: "Idrogeno liquido", correct: false }
+        ] },
+      { q: "Quale abitudine aiuta a ridurre gli sprechi d'acqua?", answers: [
+          { text: "Chiudere il rubinetto mentre ci si lava i denti", correct: true },
+          { text: "Lavare l'auto tutti i giorni", correct: false },
+          { text: "Lasciare aperti gli irrigatori", correct: false }
+        ] },
+      { q: "Quale materiale è biodegradabile?", answers: [
+          { text: "Carta", correct: true },
+          { text: "Plastica", correct: false },
+          { text: "Alluminio", correct: false }
+        ] },
+      { q: "Cosa sono gli \"ecosistemi\"?", answers: [
+          { text: "Comunità di organismi e ambiente in cui vivono", correct: true },
+          { text: "Impianti industriali", correct: false },
+          { text: "Strumenti per la pesca", correct: false }
+        ] },
+      { q: "Cosa significa la sigla \"IA\"?", answers: [
+          { text: "Intelligenza Artificiale", correct: true },
+          { text: "Informazione Avanzata", correct: false },
+          { text: "Iper Accelerazione", correct: false }
+        ] },
+      { q: "Qual è un esempio di applicazione dell'IA?", answers: [
+          { text: "Riconoscimento facciale", correct: true },
+          { text: "Carta da gioco", correct: false },
+          { text: "Pennelli digitali", correct: false }
+        ] },
+      { q: "Cos'è il \"machine learning\"?", answers: [
+          { text: "Un metodo che permette ai computer di imparare dai dati", correct: true },
+          { text: "Una nuova console per videogiochi", correct: false },
+          { text: "Un tipo di rete internet", correct: false }
+        ] },
+      { q: "In quale campo l'IA può aiutare a diagnosticare malattie?", answers: [
+          { text: "Medicina", correct: true },
+          { text: "Giardinaggio", correct: false },
+          { text: "Meteorologia", correct: false }
+        ] },
+      { q: "Che nome hanno le reti neurali ispirate al cervello umano?", answers: [
+          { text: "Reti neurali artificiali", correct: true },
+          { text: "Processori quantistici", correct: false },
+          { text: "Plance digitali", correct: false }
+        ] },
+      { q: "Quale rischio etico viene spesso discusso riguardo all'IA?", answers: [
+          { text: "Bias nei dati che portano a decisioni ingiuste", correct: true },
+          { text: "Durata delle batterie", correct: false },
+          { text: "Numero di tastiere", correct: false }
+        ] },
+      { q: "Cosa indica il termine \"algoritmo\"?", answers: [
+          { text: "Una serie di istruzioni per risolvere un problema", correct: true },
+          { text: "Un tipo di microchip", correct: false },
+          { text: "Un linguaggio segreto", correct: false }
+        ] },
+      { q: "Qual è lo scopo dei chatbot basati su IA?", answers: [
+          { text: "Conversare automaticamente con gli utenti", correct: true },
+          { text: "Stampare documenti in 3D", correct: false },
+          { text: "Calcolare tasse", correct: false }
+        ] },
+      { q: "Da cosa dipende la qualità di un modello di IA?", answers: [
+          { text: "Dalla quantità e qualità dei dati usati per addestrarlo", correct: true },
+          { text: "Dalla velocità della connessione internet", correct: false },
+          { text: "Dal colore dello schermo", correct: false }
+        ] },
+      { q: "Cosa prevede il concetto di \"singolarità tecnologica\"?", answers: [
+          { text: "L'IA supererà l'intelligenza umana in modo irreversibile", correct: true },
+          { text: "Le macchine diventeranno più lente", correct: false },
+          { text: "I computer smetteranno di usare elettricità", correct: false }
+        ] },
+      { q: "Qual è il nome del primo satellite artificiale lanciato nello spazio?", answers: [
+          { text: "Sputnik 1", correct: true },
+          { text: "Voyager 2", correct: false },
+          { text: "Hubble", correct: false }
+        ] },
+      { q: "Che cosa studia l'astronomia?", answers: [
+          { text: "Gli oggetti e i fenomeni celesti", correct: true },
+          { text: "Le specie marine", correct: false },
+          { text: "L'archeologia", correct: false }
+        ] },
+      { q: "Cosa significa l'acronimo \"ISS\"?", answers: [
+          { text: "International Space Station", correct: true },
+          { text: "Interstellar Signal System", correct: false },
+          { text: "Italian Space Service", correct: false }
+        ] },
+      { q: "Quale pianeta è famoso per i suoi grandi anelli?", answers: [
+          { text: "Saturno", correct: true },
+          { text: "Marte", correct: false },
+          { text: "Venere", correct: false }
+        ] },
+      { q: "Qual è la principale forza che tiene i pianeti in orbita attorno al Sole?", answers: [
+          { text: "La gravità", correct: true },
+          { text: "Il magnetismo", correct: false },
+          { text: "Il vento solare", correct: false }
+        ] },
+      { q: "Qual è la velocità di fuga della Terra (approssimativamente)?", answers: [
+          { text: "Circa 11 km/s", correct: true },
+          { text: "100 m/s", correct: false },
+          { text: "300 km/s", correct: false }
+        ] },
+      { q: "Cosa sono i buchi neri?", answers: [
+          { text: "Regioni dello spazio con gravità così forte da non far uscire nemmeno la luce", correct: true },
+          { text: "Stelle molto luminose", correct: false },
+          { text: "Pianeti di colore nero", correct: false }
+        ] },
+      { q: "Qual è stata la prima missione con equipaggio a sbarcare sulla Luna?", answers: [
+          { text: "Apollo 11", correct: true },
+          { text: "Soyuz 1", correct: false },
+          { text: "Shuttle Columbia", correct: false }
+        ] },
+      { q: "Quale strumento permette di osservare galassie lontane dallo spazio?", answers: [
+          { text: "Telescopio Hubble", correct: true },
+          { text: "Microscopio elettronico", correct: false },
+          { text: "Sismografo", correct: false }
+        ] },
+      { q: "Come si chiama il pianeta più grande del sistema solare?", answers: [
+          { text: "Giove", correct: true },
+          { text: "Mercurio", correct: false },
+          { text: "Urano", correct: false }
+        ] }
     ];
 
-    const scenes = [];
-    for (let level = 1; level <= 5; level++) {
-      for (let i = 1; i <= 10; i++) {
-        const index = (level - 1) * 10 + i;
-        scenes.push({
-          text: `Livello ${level} – Domanda ${i}: Cosa faresti in questa situazione #${index}?`,
-          options: [
-            { text: "Scelta sbagliata", result: "❌ Scelta non ottimale.", correct: false },
-            { text: "Scelta giusta", result: "✅ Ottima decisione!", correct: true }
-          ]
-        });
-      }
-    }
+    const letters = [
+      "Ciao dal 2050! Grazie alle tue scelte la Terra è più verde. Le città sono piene di alberi e le auto quasi non fanno rumore. Non dimenticare, ogni piccola azione ha costruito questo futuro.",
+      "Saluti dal 2080! Le intelligenze artificiali collaborano con noi ogni giorno. I robot cucinano, ma gli umani insegnano la creatività. Ci ricordiamo di te come uno dei pionieri dell'etica digitale.",
+      "Ti scriviamo dall'anno 2120, direttamente dall'orbita di Marte. Le colonie spaziali sono realtà grazie ai sognatori del passato. Da quassù la Terra sembra fragile ma bellissima: continua a proteggerla."
+    ];
 
-    let currentScene = 0;
+    let current = 0;
     let score = 0;
-    let currentLevel = 1;
 
-    function showScene() {
-      const s = scenes[currentScene];
-      document.getElementById('scenario').textContent = s.text;
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById('question').textContent = q.q;
       const optionsDiv = document.getElementById('options');
       optionsDiv.innerHTML = '';
       document.getElementById('result').textContent = '';
-      document.getElementById('letter').textContent = '';
-
-      s.options.forEach((opt) => {
+      q.answers.forEach(ans => {
         const btn = document.createElement('button');
-        btn.textContent = opt.text;
-        btn.onclick = () => {
-          document.getElementById('result').textContent = opt.result;
-          if (opt.correct) score++;
-
-          currentScene++;
-
-          if (currentScene % 10 === 0) {
-            const levelScore = score % 10;
-            if (levelScore >= 7) {
-              const letterIndex = currentLevel - 1;
-              document.getElementById('letter').textContent = letters[letterIndex];
-              currentLevel++;
-              setTimeout(showScene, 5000);
-            } else {
-              document.getElementById('options').innerHTML = '<p>💥 Non hai superato il livello. Riprova!</p>';
-            }
-          } else {
-            setTimeout(showScene, 1500);
-          }
-        };
+        btn.textContent = ans.text;
+        btn.onclick = () => checkAnswer(ans.correct);
         optionsDiv.appendChild(btn);
       });
     }
 
-    showScene();
+    function checkAnswer(correct) {
+      const result = document.getElementById('result');
+      if (correct) {
+        result.textContent = '✅ Risposta corretta!';
+        score++;
+        current++;
+        if (score % 10 === 0) {
+          showLetter();
+        } else if (current < questions.length) {
+          setTimeout(showQuestion, 1000);
+        } else {
+          document.getElementById('question').textContent = 'Hai completato il quiz!';
+          document.getElementById('options').innerHTML = '';
+        }
+      } else {
+        result.textContent = '❌ Sbagliato, riprova.';
+      }
+    }
+
+    function showLetter() {
+      const idx = score / 10 - 1;
+      document.getElementById('letter').textContent = letters[idx];
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      const btn = document.createElement('button');
+      btn.textContent = 'Continua';
+      btn.onclick = () => {
+        document.getElementById('letter').textContent = '';
+        if (current < questions.length) {
+          showQuestion();
+        } else {
+          document.getElementById('question').textContent = 'Hai completato il quiz!';
+        }
+      };
+      optionsDiv.appendChild(btn);
+    }
+
+    showQuestion();
   </script>
 </body>
 </html>
