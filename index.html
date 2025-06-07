@@ -1,20 +1,143 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <title>Futuro da Homo Sapiens - Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: Arial, sans-serif; background-color: #eef5fa; padding: 2em; }
-    .container { max-width: 800px; margin: auto; background: #fff; padding: 2em; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h1 { text-align: center; color: #1a4b7c; }
-    .question-box { margin-top: 2em; }
-    .question-number { font-weight: bold; }
-    .question-text { margin: 1em 0; font-size: 1.2em; }
-    .options button { display: block; margin: 0.5em 0; padding: 0.75em; width: 100%; border: none; border-radius: 5px; background-color: #e0ebf5; cursor: pointer; transition: background 0.3s; }
-    .options button:hover { background-color: #c6d8ee; }
-    .feedback { margin-top: 1em; font-weight: bold; }
-    .letter-box { margin-top: 2em; background: #f4f9f9; border-left: 5px solid #1a4b7c; padding: 1em; white-space: pre-wrap; font-style: italic; display: none; }
-    .retry-button { margin-top: 1em; padding: 0.5em; background: #ffc0c0; border: none; border-radius: 5px; cursor: pointer; display: none; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #cce7ff, #f0f8ff);
+      padding: 2em 1em;
+      color: #2c3e50;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: #ffffffdd;
+      padding: 2.5em 3em;
+      border-radius: 15px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .container:hover {
+      box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+    }
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+      font-weight: 700;
+      margin-bottom: 1.5em;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    .question-number {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1565c0;
+    }
+    .question-text {
+      margin: 0.75em 0 1.5em;
+      font-size: 1.3rem;
+      line-height: 1.4;
+      color: #1a237e;
+      min-height: 70px;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      padding: 0.85em 1em;
+      margin: 0.5em 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      background-color: #1976d2;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(25,118,210,0.4);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-align: left;
+      letter-spacing: 0.03em;
+    }
+    .options button:hover {
+      background-color: #0d47a1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(13,71,161,0.6);
+    }
+    .feedback {
+      margin-top: 1.2em;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #d32f2f;
+      min-height: 30px;
+      text-align: center;
+      user-select: none;
+    }
+    .letter-box {
+      margin-top: 2em;
+      background: #e3f2fd;
+      border-left: 6px solid #1565c0;
+      padding: 1.2em 1.5em;
+      font-style: italic;
+      color: #0d47a1;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      border-radius: 0 12px 12px 0;
+      box-shadow: 2px 2px 10px rgba(21,101,192,0.15);
+      display: none;
+      user-select: text;
+    }
+    .retry-button {
+      margin-top: 1.5em;
+      padding: 0.75em 1.3em;
+      background: #ef5350;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(239,83,80,0.6);
+      transition: background-color 0.3s ease, transform 0.15s ease;
+      user-select: none;
+      display: none;
+      width: 100%;
+    }
+    .retry-button:hover {
+      background: #b71c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(183,28,28,0.8);
+    }
+    .final-message {
+      margin-top: 2em;
+      background: #c8e6c9;
+      border-left: 6px solid #2e7d32;
+      padding: 1.5em 2em;
+      color: #2e7d32;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      border-radius: 12px;
+      box-shadow: 3px 3px 15px rgba(46,125,50,0.25);
+      display: none;
+      user-select: text;
+      text-align: center;
+    }
+    @media (max-width: 480px) {
+      .container { padding: 1.5em 1.8em; }
+      .question-text { font-size: 1.1rem; }
+      .options button { font-size: 1rem; }
+      .final-message { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -28,6 +151,7 @@
         <div class="feedback" id="feedback"></div>
         <div class="letter-box" id="letter"></div>
         <button id="retry" class="retry-button" onclick="retryLevel()">🔁 Riprova il livello</button>
+        <div id="finalMessage" class="final-message"></div>
       </div>
     </div>
   </div>
@@ -268,17 +392,17 @@
         { text: "L’identità sui social", correct: false },
         { text: "Un passaporto elettronico globale", correct: false }
       ]},
-      { text: "Qual è l’impatto principale dell’estrazione di litio per batterie?", options: [
-        { text: "Miglioramento della qualità dell’aria", correct: false },
-        { text: "Riduzione del rumore urbano", correct: false },
-        { text: "Consumo eccessivo di acqua e danni ambientali", correct: true },
-        { text: "Produzione di energia rinnovabile", correct: false }
+      { text: "Qual è l’obiettivo della bioeconomia?", options: [
+        { text: "Sfruttare risorse biologiche in modo sostenibile", correct: true },
+        { text: "Aumentare la produzione chimica", correct: false },
+        { text: "Espandere l’allevamento intensivo", correct: false },
+        { text: "Ridurre l’uso di bioplastiche", correct: false }
       ]},
-      { text: "Come si può ridurre la dipendenza dalle risorse non rinnovabili?", options: [
-        { text: "Aumentando l'uso di energia fossile", correct: false },
-        { text: "Riciclando e promuovendo energie alternative", correct: true },
-        { text: "Usando solo batterie al piombo", correct: false },
-        { text: "Tagliando gli alberi più vecchi", correct: false }
+      { text: "Cosa significa resilienza urbana?", options: [
+        { text: "Capacità di una città di adattarsi e riprendersi da crisi", correct: true },
+        { text: "Costruire solo grattacieli", correct: false },
+        { text: "Espandere il trasporto pubblico", correct: false },
+        { text: "Aumentare le tasse cittadine", correct: false }
       ]},
 
       // Livello 5 (41-50)
@@ -351,8 +475,13 @@
     const feedback = document.getElementById("feedback");
     const retryButton = document.getElementById("retry");
     const letterBox = document.getElementById("letter");
+    const finalMessage = document.getElementById("finalMessage");
 
     function showQuestion() {
+      if(currentIndex >= scenes.length){
+        showFinalMessage();
+        return;
+      }
       const current = scenes[currentIndex];
       questionNumber.textContent = `Domanda ${currentIndex + 1} di ${scenes.length}`;
       questionText.textContent = current.text;
@@ -360,6 +489,7 @@
       feedback.textContent = "";
       retryButton.style.display = "none";
       letterBox.style.display = "none";
+      finalMessage.style.display = "none";
 
       current.options.forEach(option => {
         const btn = document.createElement("button");
@@ -372,16 +502,8 @@
     function checkAnswer(isCorrect) {
       if (isCorrect) {
         currentIndex++;
-        if (currentIndex % 10 === 0 && currentIndex !== 0) {
+        if (currentIndex % 10 === 0 && currentIndex !== 0 && currentIndex < scenes.length) {
           showLetter();
-        } else if (currentIndex === scenes.length) {
-          // Fine gioco, nessun messaggio specifico per ora
-          questionNumber.textContent = "Hai completato il quiz!";
-          questionText.textContent = "Grazie per aver partecipato!";
-          optionsBox.innerHTML = "";
-          feedback.textContent = "";
-          retryButton.style.display = "none";
-          letterBox.style.display = "none";
         } else {
           showQuestion();
         }
@@ -398,34 +520,16 @@
       feedback.textContent = "";
       retryButton.style.display = "none";
       letterBox.style.display = "none";
+      finalMessage.style.display = "none";
     }
 
     function showLetter() {
       const letters = [
-        `Hai superato il Livello 1!
-
-Caro terrestre,
-nel 2120 il sole fornisce il 90% dell'energia. Abbiamo imparato a rispettare i ritmi naturali. Conserva questa lezione: le scelte di oggi plasmano il mondo di domani.`,
-
-        `Hai superato il Livello 2!
-
-Cara mente curiosa,
-nel futuro gli algoritmi etici sono obbligatori. L'intelligenza artificiale coopera con l'uomo, non lo sostituisce. La consapevolezza etica è diventata il nuovo oro.`,
-
-        `Hai superato il Livello 3!
-
-Viaggiatori dello spazio,
-Marte è la nostra seconda casa. Le colonie sono verdi, autosufficienti, e imparano dai nostri errori sulla Terra. Ogni gesto conta.`,
-
-        `Hai superato il Livello 4!
-
-Pioniere del futuro,
-il mondo è interconnesso. L'acqua è protetta da una costituzione globale. La tecnologia non comanda, ma serve. Rendi questo futuro possibile.`,
-
-        `Hai superato il Livello 5!
-
-Complimenti!
-La tua coscienza è pronta a scrivere il futuro. Continua a pensare, sognare, e agire. La storia dell’Homo sapiens non è finita, ma ha appena iniziato una nuova era.`
+        `Hai superato il Livello 1!\n\nCaro terrestre,\nnel 2120 il sole fornisce il 90% dell'energia. Abbiamo imparato a rispettare i ritmi naturali. Conserva questa lezione: le scelte di oggi plasmano il mondo di domani.`,
+        `Hai superato il Livello 2!\n\nCara mente curiosa,\nnel futuro gli algoritmi etici sono obbligatori. L'intelligenza artificiale coopera con l'uomo, non lo sostituisce. La consapevolezza etica è diventata il nuovo oro.`,
+        `Hai superato il Livello 3!\n\nViaggiatori dello spazio,\nMarte è la nostra seconda casa. Le colonie sono verdi, autosufficienti, e imparano dai nostri errori sulla Terra. Ogni gesto conta.`,
+        `Hai superato il Livello 4!\n\nPioniere del futuro,\nil mondo è interconnesso. L'acqua è protetta da una costituzione globale. La tecnologia non comanda, ma serve. Rendi questo futuro possibile.`,
+        `Hai superato il Livello 5!\n\nComplimenti!\nLa tua coscienza è pronta a scrivere il futuro. Continua a pensare, sognare, e agire. La storia dell’Homo sapiens non è finita, ma ha appena iniziato una nuova era.`
       ];
 
       const levelIndex = Math.floor((currentIndex - 1) / 10);
@@ -436,8 +540,22 @@ La tua coscienza è pronta a scrivere il futuro. Continua a pensare, sognare, e 
       setTimeout(() => showQuestion(), 5000);
     }
 
+    function showFinalMessage() {
+      questionNumber.textContent = "";
+      questionText.textContent = "";
+      optionsBox.innerHTML = "";
+      feedback.textContent = "";
+      retryButton.style.display = "none";
+      letterBox.style.display = "none";
+
+      finalMessage.style.display = "block";
+      finalMessage.textContent = `🎉 Congratulazioni! Hai completato con successo il quiz Futuro da Homo Sapiens.\n\n` +
+        `Nel futuro che hai appena esplorato, l’umanità ha superato sfide incredibili, aprendosi a una nuova era di armonia tra tecnologia, natura e coscienza. ` +
+        `Le colonie multiplanetarie prosperano grazie all’innovazione responsabile, e ogni persona contribuisce a un mondo sostenibile, etico e giusto.\n\n` +
+        `Il viaggio dell’Homo sapiens continua, e tu sei parte di questa grande storia. Continua a imparare, a sognare, e a costruire il futuro che desideri.`;
+    }
+
     showQuestion();
   </script>
 </body>
 </html>
-
