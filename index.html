@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <title>Futuro da Homo Sapiens - Quiz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
     body {
@@ -39,76 +38,106 @@
     }
     .question-number {
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #1565c0;
     }
     .question-text {
       margin: 0.75em 0 1.5em;
-      font-size: 1.3rem;
-      line-height: 1.4;
+      font-size: 1.4rem;
+      line-height: 1.5;
       color: #1a237e;
-      min-height: 70px;
+      min-height: 80px;
     }
     .options button {
       display: block;
       width: 100%;
-      padding: 0.85em 1em;
-      margin: 0.5em 0;
-      font-size: 1.05rem;
+      padding: 1em 1.2em;
+      margin: 0.6em 0;
+      font-size: 1.15rem;
       font-weight: 600;
       color: #fff;
       background-color: #1976d2;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(25,118,210,0.4);
+      box-shadow: 0 5px 12px rgba(25,118,210,0.45);
       transition: background-color 0.3s ease, transform 0.2s ease;
       text-align: left;
       letter-spacing: 0.03em;
+      user-select: none;
     }
     .options button:hover {
       background-color: #0d47a1;
       transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(13,71,161,0.6);
+      box-shadow: 0 7px 18px rgba(13,71,161,0.7);
     }
     .feedback {
-      margin-top: 1.2em;
+      margin-top: 1.4em;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #d32f2f;
       min-height: 30px;
       text-align: center;
       user-select: none;
     }
     .letter-box {
-      margin-top: 2em;
+      margin-top: 2.5em;
       background: #e3f2fd;
-      border-left: 6px solid #1565c0;
-      padding: 1.2em 1.5em;
-      font-style: italic;
+      border-left: 7px solid #1565c0;
+      padding: 1.8em 2em;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
       color: #0d47a1;
-      line-height: 1.5;
+      line-height: 1.7;
       white-space: pre-wrap;
-      border-radius: 0 12px 12px 0;
-      box-shadow: 2px 2px 10px rgba(21,101,192,0.15);
+      border-radius: 0 15px 15px 0;
+      box-shadow: 3px 3px 18px rgba(21,101,192,0.22);
       display: none;
       user-select: text;
+      text-align: left;
+      letter-spacing: 0.04em;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+    .proceed-button {
+      margin-top: 1.8em;
+      padding: 1em 1.5em;
+      background: #1565c0;
+      color: white;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(21,101,192,0.7);
+      transition: background-color 0.3s ease, transform 0.15s ease;
+      user-select: none;
+      display: inline-block;
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    .proceed-button:hover {
+      background: #0d47a1;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 22px rgba(13,71,161,0.9);
     }
     .retry-button {
-      margin-top: 1.5em;
-      padding: 0.75em 1.3em;
+      margin-top: 1.6em;
+      padding: 0.9em 1.5em;
       background: #ef5350;
       color: white;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(239,83,80,0.6);
       transition: background-color 0.3s ease, transform 0.15s ease;
       user-select: none;
       display: none;
       width: 100%;
+      max-width: 300px;
     }
     .retry-button:hover {
       background: #b71c1c;
@@ -118,40 +147,73 @@
     .final-message {
       margin-top: 2em;
       background: #c8e6c9;
-      border-left: 6px solid #2e7d32;
-      padding: 1.5em 2em;
+      border-left: 7px solid #2e7d32;
+      padding: 2em 2.5em;
       color: #2e7d32;
       font-style: normal;
       font-weight: 600;
-      font-size: 1.2rem;
-      line-height: 1.6;
+      font-size: 1.3rem;
+      line-height: 1.7;
       white-space: pre-wrap;
-      border-radius: 12px;
-      box-shadow: 3px 3px 15px rgba(46,125,50,0.25);
+      border-radius: 15px;
+      box-shadow: 4px 4px 20px rgba(46,125,50,0.3);
       display: none;
       user-select: text;
       text-align: center;
     }
-    @media (max-width: 480px) {
-      .container { padding: 1.5em 1.8em; }
-      .question-text { font-size: 1.1rem; }
-      .options button { font-size: 1rem; }
-      .final-message { font-size: 1rem; }
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2em 0.6em;
+      }
+      .container {
+        padding: 1.8em 1.5em;
+        border-radius: 12px;
+      }
+      .question-number {
+        font-size: 1.1rem;
+      }
+      .question-text {
+        font-size: 1.25rem;
+        min-height: 90px;
+      }
+      .options button {
+        font-size: 1.15rem;
+        padding: 1.1em 1.3em;
+        border-radius: 14px;
+      }
+      .letter-box {
+        font-size: 1.2rem;
+        max-height: 220px;
+        padding: 1.5em 1.8em;
+      }
+      .proceed-button,
+      .retry-button {
+        max-width: 100%;
+        font-size: 1.15rem;
+        padding: 1.1em 1.4em;
+        border-radius: 14px;
+      }
+      .final-message {
+        font-size: 1.2rem;
+        padding: 1.8em 2em;
+        border-radius: 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" role="main" aria-label="Quiz Futuro da Homo Sapiens">
     <h1>🌱 Futuro da Homo Sapiens</h1>
     <div id="quiz">
       <div class="question-box">
-        <div class="question-number" id="question-number"></div>
+        <div class="question-number" id="question-number" aria-live="polite"></div>
         <div class="question-text" id="question-text"></div>
-        <div class="options" id="options"></div>
-        <div class="feedback" id="feedback"></div>
-        <div class="letter-box" id="letter"></div>
-        <button id="retry" class="retry-button" onclick="retryLevel()">🔁 Riprova il livello</button>
-        <div id="finalMessage" class="final-message"></div>
+        <div class="options" id="options" role="list"></div>
+        <div class="feedback" id="feedback" aria-live="assertive"></div>
+        <div class="letter-box" id="letter" tabindex="0"></div>
+        <button id="proceed" class="proceed-button" style="display:none;" aria-label="Prosegui al prossimo livello">➡️ Prosegui</button>
+        <button id="retry" class="retry-button" onclick="retryLevel()" aria-label="Riprova il livello">🔁 Riprova il livello</button>
+        <div id="finalMessage" class="final-message" tabindex="0"></div>
       </div>
     </div>
   </div>
@@ -476,6 +538,13 @@
     const retryButton = document.getElementById("retry");
     const letterBox = document.getElementById("letter");
     const finalMessage = document.getElementById("finalMessage");
+    const proceedButton = document.getElementById("proceed");
+
+    proceedButton.addEventListener('click', () => {
+      letterBox.style.display = "none";
+      proceedButton.style.display = "none";
+      showQuestion();
+    });
 
     function showQuestion() {
       if(currentIndex >= scenes.length){
@@ -489,11 +558,13 @@
       feedback.textContent = "";
       retryButton.style.display = "none";
       letterBox.style.display = "none";
+      proceedButton.style.display = "none";
       finalMessage.style.display = "none";
 
-      current.options.forEach(option => {
+      current.options.forEach((option, i) => {
         const btn = document.createElement("button");
         btn.textContent = option.text;
+        btn.setAttribute('role', 'listitem');
         btn.onclick = () => checkAnswer(option.correct);
         optionsBox.appendChild(btn);
       });
@@ -521,6 +592,7 @@
       retryButton.style.display = "none";
       letterBox.style.display = "none";
       finalMessage.style.display = "none";
+      proceedButton.style.display = "none";
     }
 
     function showLetter() {
@@ -536,8 +608,11 @@
       if (letters[levelIndex]) {
         letterBox.textContent = letters[levelIndex];
         letterBox.style.display = "block";
+        proceedButton.style.display = "inline-block";
+        proceedButton.focus();
+      } else {
+        showQuestion();
       }
-      setTimeout(() => showQuestion(), 5000);
     }
 
     function showFinalMessage() {
@@ -547,15 +622,18 @@
       feedback.textContent = "";
       retryButton.style.display = "none";
       letterBox.style.display = "none";
+      proceedButton.style.display = "none";
 
       finalMessage.style.display = "block";
       finalMessage.textContent = `🎉 Congratulazioni! Hai completato con successo il quiz Futuro da Homo Sapiens.\n\n` +
         `Nel futuro che hai appena esplorato, l’umanità ha superato sfide incredibili, aprendosi a una nuova era di armonia tra tecnologia, natura e coscienza. ` +
         `Le colonie multiplanetarie prosperano grazie all’innovazione responsabile, e ogni persona contribuisce a un mondo sostenibile, etico e giusto.\n\n` +
         `Il viaggio dell’Homo sapiens continua, e tu sei parte di questa grande storia. Continua a imparare, a sognare, e a costruire il futuro che desideri.`;
+      finalMessage.focus();
     }
 
     showQuestion();
   </script>
 </body>
 </html>
+
