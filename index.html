@@ -2,207 +2,182 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Futuro da Homo Sapiens - Quiz</title>
+  <title>Quiz Futuro da Homo Sapiens - Mobile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', Arial, sans-serif;
+    /* Reset e base */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%;
       background: linear-gradient(135deg, #cce7ff, #f0f8ff);
-      padding: 2em 1em;
+      font-family: 'Poppins', Arial, sans-serif;
       color: #2c3e50;
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      padding: 0.5rem;
+      height: 100vh;
+      overflow: hidden;
     }
     .container {
-      max-width: 700px;
+      background: #fff;
+      border-radius: 16px;
       width: 100%;
-      background: #ffffffdd;
-      padding: 2.5em 3em;
-      border-radius: 15px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s ease;
-    }
-    .container:hover {
-      box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+      max-width: 420px;
+      height: 100%;
+      padding: 1.5rem 1.5rem 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
     h1 {
-      text-align: center;
-      color: #0d47a1;
       font-weight: 700;
-      margin-bottom: 1.5em;
-      letter-spacing: 1.5px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      font-size: 1.75rem;
+      color: #0d47a1;
+      margin: 0 0 1rem;
+      text-align: center;
+      user-select: none;
+      letter-spacing: 1.2px;
     }
     .question-number {
       font-weight: 600;
       font-size: 1.2rem;
       color: #1565c0;
+      user-select: none;
     }
     .question-text {
-      margin: 0.75em 0 1.5em;
-      font-size: 1.4rem;
-      line-height: 1.5;
+      margin: 0.75rem 0 1.25rem;
+      font-size: 1.5rem;
       color: #1a237e;
-      min-height: 80px;
+      min-height: 90px;
+      user-select: none;
+      line-height: 1.3;
+    }
+    .options {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
     }
     .options button {
-      display: block;
-      width: 100%;
-      padding: 1em 1.2em;
-      margin: 0.6em 0;
-      font-size: 1.15rem;
+      padding: 1.2rem 1.5rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: #fff;
       background-color: #1976d2;
       border: none;
-      border-radius: 10px;
+      border-radius: 14px;
+      box-shadow: 0 6px 14px rgba(25,118,210,0.5);
       cursor: pointer;
-      box-shadow: 0 5px 12px rgba(25,118,210,0.45);
-      transition: background-color 0.3s ease, transform 0.2s ease;
       text-align: left;
       letter-spacing: 0.03em;
+      transition: background-color 0.3s ease, transform 0.15s ease;
       user-select: none;
+      width: 100%;
     }
     .options button:hover {
       background-color: #0d47a1;
       transform: translateY(-2px);
-      box-shadow: 0 7px 18px rgba(13,71,161,0.7);
+      box-shadow: 0 8px 22px rgba(13,71,161,0.8);
     }
     .feedback {
-      margin-top: 1.4em;
+      font-size: 1.3rem;
       font-weight: 700;
-      font-size: 1.2rem;
       color: #d32f2f;
-      min-height: 30px;
+      min-height: 32px;
       text-align: center;
       user-select: none;
+      margin-bottom: 1rem;
+      height: 32px;
     }
     .letter-box {
-      margin-top: 2.5em;
       background: #e3f2fd;
       border-left: 7px solid #1565c0;
-      padding: 1.8em 2em;
+      padding: 1.5rem 1.8rem;
       font-family: 'Dancing Script', cursive;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: #0d47a1;
-      line-height: 1.7;
+      line-height: 1.6;
       white-space: pre-wrap;
-      border-radius: 0 15px 15px 0;
+      border-radius: 0 16px 16px 0;
       box-shadow: 3px 3px 18px rgba(21,101,192,0.22);
-      display: none;
       user-select: text;
       text-align: left;
       letter-spacing: 0.04em;
-      max-height: 280px;
+      max-height: 200px;
       overflow-y: auto;
+      margin-bottom: 1rem;
+      display: none;
+      flex-shrink: 0;
+    }
+    .proceed-button, .retry-button {
+      width: 100%;
+      max-width: 100%;
+      padding: 1.3rem 1.5rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-radius: 16px;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      border: none;
+      transition: background-color 0.3s ease, transform 0.15s ease;
+      flex-shrink: 0;
     }
     .proceed-button {
-      margin-top: 1.8em;
-      padding: 1em 1.5em;
-      background: #1565c0;
-      color: white;
-      font-weight: 700;
-      font-size: 1.15rem;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 5px 14px rgba(21,101,192,0.7);
-      transition: background-color 0.3s ease, transform 0.15s ease;
-      user-select: none;
-      display: inline-block;
-      width: 100%;
-      max-width: 300px;
-      text-align: center;
+      background-color: #1565c0;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      display: none;
     }
     .proceed-button:hover {
-      background: #0d47a1;
+      background-color: #0d47a1;
       transform: translateY(-2px);
-      box-shadow: 0 7px 22px rgba(13,71,161,0.9);
+      box-shadow: 0 8px 22px rgba(13,71,161,0.9);
     }
     .retry-button {
-      margin-top: 1.6em;
-      padding: 0.9em 1.5em;
-      background: #ef5350;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(239,83,80,0.6);
-      transition: background-color 0.3s ease, transform 0.15s ease;
-      user-select: none;
+      background-color: #ef5350;
+      color: #fff;
       display: none;
-      width: 100%;
-      max-width: 300px;
     }
     .retry-button:hover {
-      background: #b71c1c;
+      background-color: #b71c1c;
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(183,28,28,0.8);
+      box-shadow: 0 8px 22px rgba(183,28,28,0.9);
     }
     .final-message {
-      margin-top: 2em;
       background: #c8e6c9;
       border-left: 7px solid #2e7d32;
-      padding: 2em 2.5em;
+      padding: 1.8rem 2rem;
       color: #2e7d32;
-      font-style: normal;
       font-weight: 600;
-      font-size: 1.3rem;
-      line-height: 1.7;
+      font-size: 1.4rem;
+      line-height: 1.6;
       white-space: pre-wrap;
-      border-radius: 15px;
-      box-shadow: 4px 4px 20px rgba(46,125,50,0.3);
-      display: none;
+      border-radius: 16px;
+      box-shadow: 4px 4px 22px rgba(46,125,50,0.3);
       user-select: text;
       text-align: center;
-    }
-    @media (max-width: 600px) {
-      body {
-        padding: 1.2em 0.6em;
-      }
-      .container {
-        padding: 1.8em 1.5em;
-        border-radius: 12px;
-      }
-      .question-number {
-        font-size: 1.1rem;
-      }
-      .question-text {
-        font-size: 1.25rem;
-        min-height: 90px;
-      }
-      .options button {
-        font-size: 1.15rem;
-        padding: 1.1em 1.3em;
-        border-radius: 14px;
-      }
-      .letter-box {
-        font-size: 1.2rem;
-        max-height: 220px;
-        padding: 1.5em 1.8em;
-      }
-      .proceed-button,
-      .retry-button {
-        max-width: 100%;
-        font-size: 1.15rem;
-        padding: 1.1em 1.4em;
-        border-radius: 14px;
-      }
-      .final-message {
-        font-size: 1.2rem;
-        padding: 1.8em 2em;
-        border-radius: 14px;
-      }
+      display: none;
+      flex-shrink: 0;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="container" role="main" aria-label="Quiz Futuro da Homo Sapiens">
+  <div class="container" role="main" aria-label="Quiz Futuro da Homo Sapiens - Mobile">
     <h1>🌱 Futuro da Homo Sapiens</h1>
     <div id="quiz">
       <div class="question-box">
@@ -211,429 +186,431 @@
         <div class="options" id="options" role="list"></div>
         <div class="feedback" id="feedback" aria-live="assertive"></div>
         <div class="letter-box" id="letter" tabindex="0"></div>
-        <button id="proceed" class="proceed-button" style="display:none;" aria-label="Prosegui al prossimo livello">➡️ Prosegui</button>
+        <button id="proceed" class="proceed-button" aria-label="Prosegui al prossimo livello">➡️ Prosegui</button>
         <button id="retry" class="retry-button" onclick="retryLevel()" aria-label="Riprova il livello">🔁 Riprova il livello</button>
         <div id="finalMessage" class="final-message" tabindex="0"></div>
       </div>
     </div>
   </div>
-  <script>
-    const scenes = [
-      // Livello 1 (1-10)
-      { text: "Cos'è l'intelligenza artificiale (IA)?", options: [
-        { text: "Un tipo di magia", correct: false },
-        { text: "Un sistema di calcolo meccanico", correct: false },
-        { text: "Un insieme di tecnologie che simulano capacità umane", correct: true },
-        { text: "Un robot che pulisce casa", correct: false }
-      ]},
-      { text: "Quale dei seguenti è un esempio di energia rinnovabile?", options: [
-        { text: "Carbone", correct: false },
-        { text: "Petrolio", correct: false },
-        { text: "Sole", correct: true },
-        { text: "Gas naturale", correct: false }
-      ]},
-      { text: "Qual è l'obiettivo principale dello sviluppo sostenibile?", options: [
-        { text: "Costruire più fabbriche", correct: false },
-        { text: "Aumentare i consumi", correct: false },
-        { text: "Soddisfare i bisogni attuali senza compromettere quelli futuri", correct: true },
-        { text: "Fare soldi velocemente", correct: false }
-      ]},
-      { text: "Cos'è un robot?", options: [
-        { text: "Un essere vivente programmato", correct: false },
-        { text: "Una macchina programmabile per eseguire compiti", correct: true },
-        { text: "Un animale artificiale", correct: false },
-        { text: "Un videogioco", correct: false }
-      ]},
-      { text: "Cosa studia l'etica?", options: [
-        { text: "I fenomeni atmosferici", correct: false },
-        { text: "Il comportamento degli animali", correct: false },
-        { text: "Le regole della morale e del comportamento corretto", correct: true },
-        { text: "La tecnologia", correct: false }
-      ]},
-      { text: "Quale agenzia spaziale ha portato l’uomo sulla Luna?", options: [
-        { text: "ESA", correct: false },
-        { text: "NASA", correct: true },
-        { text: "Roscosmos", correct: false },
-        { text: "SpaceX", correct: false }
-      ]},
-      { text: "Quale tra questi oggetti è più sostenibile?", options: [
-        { text: "Bottiglia di plastica usa e getta", correct: false },
-        { text: "Borsa di plastica", correct: false },
-        { text: "Bicchiere di carta compostabile", correct: true },
-        { text: "Forchetta di metallo monouso", correct: false }
-      ]},
-      { text: "Qual è il pianeta più vicino alla Terra abitabile secondo gli scienziati?", options: [
-        { text: "Plutone", correct: false },
-        { text: "Proxima b", correct: true },
-        { text: "Marte", correct: false },
-        { text: "Venere", correct: false }
-      ]},
-      { text: "Quale materia prima è usata nei pannelli solari?", options: [
-        { text: "Ferro", correct: false },
-        { text: "Silicone", correct: false },
-        { text: "Silicio", correct: true },
-        { text: "Argento", correct: false }
-      ]},
-      { text: "Qual è un rischio dell’uso eccessivo dell’IA?", options: [
-        { text: "Aumentare la produttività", correct: false },
-        { text: "Fare troppe vacanze", correct: false },
-        { text: "Perdita di posti di lavoro", correct: true },
-        { text: "Migliorare la salute", correct: false }
-      ]},
 
-      // Livello 2 (11-20)
-      { text: "Che cos'è il \"machine learning\"?", options: [
-        { text: "Un robot che impara da solo", correct: false },
-        { text: "Un programma che cucina", correct: false },
-        { text: "Un sistema basato su tentativi ed errori", correct: false },
-        { text: "Un insieme di algoritmi che apprendono dai dati", correct: true }
-      ]},
-      { text: "Quale dei seguenti è un carburante sostenibile?", options: [
-        { text: "Diesel", correct: false },
-        { text: "Benzina verde", correct: false },
-        { text: "Biodiesel", correct: true },
-        { text: "Metano fossile", correct: false }
-      ]},
-      { text: "Qual è una possibile conseguenza dell’inquinamento da plastica nei mari?", options: [
-        { text: "Più turismo", correct: false },
-        { text: "Cibo più economico", correct: false },
-        { text: "Morte della fauna marina", correct: true },
-        { text: "Maggiori opportunità di pesca", correct: false }
-      ]},
-      { text: "Chi ha scritto il libro “Superintelligenza”?", options: [
-        { text: "Elon Musk", correct: false },
-        { text: "Bill Gates", correct: false },
-        { text: "Nick Bostrom", correct: true },
-        { text: "Ray Kurzweil", correct: false }
-      ]},
-      { text: "Cosa si intende con “transumanesimo”?", options: [
-        { text: "La trasformazione degli umani in robot", correct: false },
-        { text: "Una filosofia che promuove l’uso della tecnologia per potenziare le capacità umane", correct: true },
-        { text: "La religione dell’IA", correct: false },
-        { text: "Un movimento ambientalista", correct: false }
-      ]},
-      { text: "Quale tra questi non è un principio etico per l’IA secondo l’Unione Europea?", options: [
-        { text: "Trasparenza", correct: false },
-        { text: "Sicurezza", correct: false },
-        { text: "Disuguaglianza", correct: true },
-        { text: "Responsabilità", correct: false }
-      ]},
-      { text: "Quale missione è destinata a riportare campioni da Marte?", options: [
-        { text: "Artemis", correct: false },
-        { text: "Mars Sample Return", correct: true },
-        { text: "Voyager 1", correct: false },
-        { text: "Curiosity", correct: false }
-      ]},
-      { text: "Qual è l'obiettivo del protocollo di Kyoto?", options: [
-        { text: "Colonizzare Marte", correct: false },
-        { text: "Ridurre le emissioni di gas serra", correct: true },
-        { text: "Espandere il commercio internazionale", correct: false },
-        { text: "Aumentare il consumo di energia", correct: false }
-      ]},
-      { text: "Un sistema IA “biasato” cosa significa?", options: [
-        { text: "Che è più veloce", correct: false },
-        { text: "Che presenta distorsioni nei dati o nei risultati", correct: true },
-        { text: "Che usa più energia", correct: false },
-        { text: "Che è più intelligente", correct: false }
-      ]},
-      { text: "Quale gas è più associato all'effetto serra?", options: [
-        { text: "Ossigeno", correct: false },
-        { text: "Azoto", correct: false },
-        { text: "Anidride carbonica (CO₂)", correct: true },
-        { text: "Idrogeno", correct: false }
-      ]},
+<script>
+const scenes = [
+  // Livello 1 (1-10)
+  { text: "Cos'è l'intelligenza artificiale (IA)?", options: [
+    { text: "Un tipo di magia", correct: false },
+    { text: "Un sistema di calcolo meccanico", correct: false },
+    { text: "Un insieme di tecnologie che simulano capacità umane", correct: true },
+    { text: "Un robot che pulisce casa", correct: false }
+  ]},
+  { text: "Quale dei seguenti è un esempio di energia rinnovabile?", options: [
+    { text: "Carbone", correct: false },
+    { text: "Petrolio", correct: false },
+    { text: "Sole", correct: true },
+    { text: "Gas naturale", correct: false }
+  ]},
+  { text: "Qual è l'obiettivo principale dello sviluppo sostenibile?", options: [
+    { text: "Costruire più fabbriche", correct: false },
+    { text: "Aumentare i consumi", correct: false },
+    { text: "Soddisfare i bisogni attuali senza compromettere quelli futuri", correct: true },
+    { text: "Fare soldi velocemente", correct: false }
+  ]},
+  { text: "Cos'è un robot?", options: [
+    { text: "Un essere vivente programmato", correct: false },
+    { text: "Una macchina programmabile per eseguire compiti", correct: true },
+    { text: "Un animale artificiale", correct: false },
+    { text: "Un videogioco", correct: false }
+  ]},
+  { text: "Cosa studia l'etica?", options: [
+    { text: "I fenomeni atmosferici", correct: false },
+    { text: "Il comportamento degli animali", correct: false },
+    { text: "Le regole della morale e del comportamento corretto", correct: true },
+    { text: "La tecnologia", correct: false }
+  ]},
+  { text: "Quale agenzia spaziale ha portato l’uomo sulla Luna?", options: [
+    { text: "ESA", correct: false },
+    { text: "NASA", correct: true },
+    { text: "Roscosmos", correct: false },
+    { text: "SpaceX", correct: false }
+  ]},
+  { text: "Quale tra questi oggetti è più sostenibile?", options: [
+    { text: "Bottiglia di plastica usa e getta", correct: false },
+    { text: "Borsa di plastica", correct: false },
+    { text: "Bicchiere di carta compostabile", correct: true },
+    { text: "Forchetta di metallo monouso", correct: false }
+  ]},
+  { text: "Qual è il pianeta più vicino alla Terra abitabile secondo gli scienziati?", options: [
+    { text: "Plutone", correct: false },
+    { text: "Proxima b", correct: true },
+    { text: "Marte", correct: false },
+    { text: "Venere", correct: false }
+  ]},
+  { text: "Quale materia prima è usata nei pannelli solari?", options: [
+    { text: "Ferro", correct: false },
+    { text: "Silicone", correct: false },
+    { text: "Silicio", correct: true },
+    { text: "Argento", correct: false }
+  ]},
+  { text: "Qual è un rischio dell’uso eccessivo dell’IA?", options: [
+    { text: "Aumentare la produttività", correct: false },
+    { text: "Fare troppe vacanze", correct: false },
+    { text: "Perdita di posti di lavoro", correct: true },
+    { text: "Migliorare la salute", correct: false }
+  ]},
 
-      // Livello 3 (21-30)
-      { text: "Cosa prevede il concetto di ‘singolarità tecnologica’?", options: [
-        { text: "Il blocco delle tecnologie digitali", correct: false },
-        { text: "Il momento in cui l'IA supererà l’intelligenza umana", correct: true },
-        { text: "L'interruzione dei servizi satellitari", correct: false },
-        { text: "Una nuova religione basata sulla tecnologia", correct: false }
-      ]},
-      { text: "Come può l'IA favorire l’economia circolare?", options: [
-        { text: "Incentivando il consumo", correct: false },
-        { text: "Pianificando lo smaltimento illegale", correct: false },
-        { text: "Ottimizzando il riciclo e la tracciabilità dei materiali", correct: true },
-        { text: "Sostituendo l’agricoltura", correct: false }
-      ]},
-      { text: "Quale tra questi è un rischio etico dell’IA in ambito medico?", options: [
-        { text: "Curare più pazienti", correct: false },
-        { text: "Diagnosticare velocemente", correct: false },
-        { text: "Discriminare in base ai dati", correct: true },
-        { text: "Usare meno carta", correct: false }
-      ]},
-      { text: "La missione Artemis I aveva lo scopo di…", options: [
-        { text: "Atterrare su Giove", correct: false },
-        { text: "Portare l’uomo su Marte", correct: false },
-        { text: "Tornare sulla Luna con veicoli di nuova generazione", correct: true },
-        { text: "Lanciare satelliti per il 5G", correct: false }
-      ]},
-      { text: "Cosa si intende per 'algoritmo etico'?", options: [
-        { text: "Un codice morale religioso", correct: false },
-        { text: "Un algoritmo che valuta il bene e il male", correct: false },
-        { text: "Un software che segue principi di equità, trasparenza e sicurezza", correct: true },
-        { text: "Un programma che punisce i malintenzionati", correct: false }
-      ]},
-      { text: "Qual è una preoccupazione comune sull’uso dei robot nei lavori?", options: [
-        { text: "Faranno pause troppo lunghe", correct: false },
-        { text: "Sostituiranno posti di lavoro umani", correct: true },
-        { text: "Non saranno mai puntuali", correct: false },
-        { text: "Non obbediranno agli ordini", correct: false }
-      ]},
-      { text: "Cos'è la blockchain?", options: [
-        { text: "Una catena di supermercati digitali", correct: false },
-        { text: "Un database distribuito e sicuro", correct: true },
-        { text: "Un software antivirus", correct: false },
-        { text: "Un'app per chattare", correct: false }
-      ]},
-      { text: "Cosa significa 'tecnologia open source'?", options: [
-        { text: "Tecnologia costosa e segreta", correct: false },
-        { text: "Tecnologia disponibile a tutti per l’uso e la modifica", correct: true },
-        { text: "Software che funziona solo offline", correct: false },
-        { text: "Tecnologia basata su sensori ottici", correct: false }
-      ]},
-      { text: "Qual è lo scopo della crittografia?", options: [
-        { text: "Accelerare le connessioni internet", correct: false },
-        { text: "Proteggere i dati e le comunicazioni", correct: true },
-        { text: "Controllare i social media", correct: false },
-        { text: "Registrare video in segreto", correct: false }
-      ]},
-      { text: "Che cos’è il metaverso?", options: [
-        { text: "Un nuovo pianeta", correct: false },
-        { text: "Una realtà virtuale condivisa e immersiva", correct: true },
-        { text: "Un codice binario", correct: false },
-        { text: "Una valuta elettronica", correct: false }
-      ]},
+  // Livello 2 (11-20)
+  { text: "Che cos'è il \"machine learning\"?", options: [
+    { text: "Un robot che impara da solo", correct: false },
+    { text: "Un programma che cucina", correct: false },
+    { text: "Un sistema basato su tentativi ed errori", correct: false },
+    { text: "Un insieme di algoritmi che apprendono dai dati", correct: true }
+  ]},
+  { text: "Quale dei seguenti è un carburante sostenibile?", options: [
+    { text: "Diesel", correct: false },
+    { text: "Benzina verde", correct: false },
+    { text: "Biodiesel", correct: true },
+    { text: "Metano fossile", correct: false }
+  ]},
+  { text: "Qual è una possibile conseguenza dell’inquinamento da plastica nei mari?", options: [
+    { text: "Più turismo", correct: false },
+    { text: "Cibo più economico", correct: false },
+    { text: "Morte della fauna marina", correct: true },
+    { text: "Maggiori opportunità di pesca", correct: false }
+  ]},
+  { text: "Chi ha scritto il libro “Superintelligenza”?", options: [
+    { text: "Elon Musk", correct: false },
+    { text: "Bill Gates", correct: false },
+    { text: "Nick Bostrom", correct: true },
+    { text: "Ray Kurzweil", correct: false }
+  ]},
+  { text: "Cosa si intende con “transumanesimo”?", options: [
+    { text: "La trasformazione degli umani in robot", correct: false },
+    { text: "Una filosofia che promuove l’uso della tecnologia per potenziare le capacità umane", correct: true },
+    { text: "La religione dell’IA", correct: false },
+    { text: "Un movimento ambientalista", correct: false }
+  ]},
+  { text: "Quale tra questi non è un principio etico per l’IA secondo l’Unione Europea?", options: [
+    { text: "Trasparenza", correct: false },
+    { text: "Sicurezza", correct: false },
+    { text: "Disuguaglianza", correct: true },
+    { text: "Responsabilità", correct: false }
+  ]},
+  { text: "Quale missione è destinata a riportare campioni da Marte?", options: [
+    { text: "Artemis", correct: false },
+    { text: "Mars Sample Return", correct: true },
+    { text: "Voyager 1", correct: false },
+    { text: "Curiosity", correct: false }
+  ]},
+  { text: "Qual è l'obiettivo del protocollo di Kyoto?", options: [
+    { text: "Colonizzare Marte", correct: false },
+    { text: "Ridurre le emissioni di gas serra", correct: true },
+    { text: "Espandere il commercio internazionale", correct: false },
+    { text: "Aumentare il consumo di energia", correct: false }
+  ]},
+  { text: "Un sistema IA “biasato” cosa significa?", options: [
+    { text: "Che è più veloce", correct: false },
+    { text: "Che presenta distorsioni nei dati o nei risultati", correct: true },
+    { text: "Che usa più energia", correct: false },
+    { text: "Che è più intelligente", correct: false }
+  ]},
+  { text: "Quale gas è più associato all'effetto serra?", options: [
+    { text: "Ossigeno", correct: false },
+    { text: "Azoto", correct: false },
+    { text: "Anidride carbonica (CO₂)", correct: true },
+    { text: "Idrogeno", correct: false }
+  ]},
 
-      // Livello 4 (31-40)
-      { text: "Che cos'è l'agricoltura verticale?", options: [
-        { text: "Una tecnica per coltivare su pareti o edifici in altezza", correct: true },
-        { text: "Una forma di giardinaggio zen", correct: false },
-        { text: "Un metodo di scavo per coltivazioni sotterranee", correct: false },
-        { text: "Una teoria economica sulla distribuzione dei raccolti", correct: false }
-      ]},
-      { text: "Quale tecnologia permette il controllo remoto di oggetti fisici tramite internet?", options: [
-        { text: "Blockchain", correct: false },
-        { text: "IoT (Internet of Things)", correct: true },
-        { text: "Cloud Gaming", correct: false },
-        { text: "Big Data", correct: false }
-      ]},
-      { text: "Qual è uno dei principali rischi legati al riconoscimento facciale?", options: [
-        { text: "Aumento dell’autostima", correct: false },
-        { text: "Violazione della privacy", correct: true },
-        { text: "Incapacità di identificare animali", correct: false },
-        { text: "Troppo consumo di batteria", correct: false }
-      ]},
-      { text: "Cos'è un gemello digitale (digital twin)?", options: [
-        { text: "Un videogioco con grafica 3D", correct: false },
-        { text: "Una copia virtuale di un oggetto o sistema fisico", correct: true },
-        { text: "Un social network alternativo", correct: false },
-        { text: "Un software per riconoscere i parenti", correct: false }
-      ]},
-      { text: "A cosa serve una smart grid?", options: [
-        { text: "Distribuire elettricità in modo efficiente e intelligente", correct: true },
-        { text: "Caricare smartphone più velocemente", correct: false },
-        { text: "Navigare online con maggiore sicurezza", correct: false },
-        { text: "Gestire i contenuti social automaticamente", correct: false }
-      ]},
-      { text: "Cos’è l’e-waste?", options: [
-        { text: "Energia eolica accumulata", correct: false },
-        { text: "Rifiuto elettronico", correct: true },
-        { text: "Software per riciclare musica digitale", correct: false },
-        { text: "Un tipo di cibo sintetico", correct: false }
-      ]},
-      { text: "Qual è lo scopo del greenwashing?", options: [
-        { text: "Pulire ambienti industriali", correct: false },
-        { text: "Far sembrare un’azienda ecologica senza esserlo", correct: true },
-        { text: "Ottimizzare l’agricoltura biologica", correct: false },
-        { text: "Aumentare l’efficienza dei pannelli solari", correct: false }
-      ]},
-      { text: "Che cosa si intende per cittadinanza digitale?", options: [
-        { text: "L’acquisto di cittadinanza online", correct: false },
-        { text: "L’uso consapevole e responsabile della tecnologia", correct: true },
-        { text: "L’identità sui social", correct: false },
-        { text: "Un passaporto elettronico globale", correct: false }
-      ]},
-      { text: "Qual è l’obiettivo della bioeconomia?", options: [
-        { text: "Sfruttare risorse biologiche in modo sostenibile", correct: true },
-        { text: "Aumentare la produzione chimica", correct: false },
-        { text: "Espandere l’allevamento intensivo", correct: false },
-        { text: "Ridurre l’uso di bioplastiche", correct: false }
-      ]},
-      { text: "Cosa significa resilienza urbana?", options: [
-        { text: "Capacità di una città di adattarsi e riprendersi da crisi", correct: true },
-        { text: "Costruire solo grattacieli", correct: false },
-        { text: "Espandere il trasporto pubblico", correct: false },
-        { text: "Aumentare le tasse cittadine", correct: false }
-      ]},
+  // Livello 3 (21-30)
+  { text: "Cosa prevede il concetto di ‘singolarità tecnologica’?", options: [
+    { text: "Il blocco delle tecnologie digitali", correct: false },
+    { text: "Il momento in cui l'IA supererà l’intelligenza umana", correct: true },
+    { text: "L'interruzione dei servizi satellitari", correct: false },
+    { text: "Una nuova religione basata sulla tecnologia", correct: false }
+  ]},
+  { text: "Come può l'IA favorire l’economia circolare?", options: [
+    { text: "Incentivando il consumo", correct: false },
+    { text: "Pianificando lo smaltimento illegale", correct: false },
+    { text: "Ottimizzando il riciclo e la tracciabilità dei materiali", correct: true },
+    { text: "Sostituendo l’agricoltura", correct: false }
+  ]},
+  { text: "Quale tra questi è un rischio etico dell’IA in ambito medico?", options: [
+    { text: "Curare più pazienti", correct: false },
+    { text: "Diagnosticare velocemente", correct: false },
+    { text: "Discriminare in base ai dati", correct: true },
+    { text: "Usare meno carta", correct: false }
+  ]},
+  { text: "La missione Artemis I aveva lo scopo di…", options: [
+    { text: "Atterrare su Giove", correct: false },
+    { text: "Portare l’uomo su Marte", correct: false },
+    { text: "Tornare sulla Luna con veicoli di nuova generazione", correct: true },
+    { text: "Lanciare satelliti per il 5G", correct: false }
+  ]},
+  { text: "Cosa si intende per 'algoritmo etico'?", options: [
+    { text: "Un codice morale religioso", correct: false },
+    { text: "Un algoritmo che valuta il bene e il male", correct: false },
+    { text: "Un software che segue principi di equità, trasparenza e sicurezza", correct: true },
+    { text: "Un programma che punisce i malintenzionati", correct: false }
+  ]},
+  { text: "Qual è una preoccupazione comune sull’uso dei robot nei lavori?", options: [
+    { text: "Faranno pause troppo lunghe", correct: false },
+    { text: "Sostituiranno posti di lavoro umani", correct: true },
+    { text: "Non saranno mai puntuali", correct: false },
+    { text: "Non obbediranno agli ordini", correct: false }
+  ]},
+  { text: "Cos'è la blockchain?", options: [
+    { text: "Una catena di supermercati digitali", correct: false },
+    { text: "Un database distribuito e sicuro", correct: true },
+    { text: "Un software antivirus", correct: false },
+    { text: "Un'app per chattare", correct: false }
+  ]},
+  { text: "Cosa significa 'tecnologia open source'?", options: [
+    { text: "Tecnologia costosa e segreta", correct: false },
+    { text: "Tecnologia disponibile a tutti per l’uso e la modifica", correct: true },
+    { text: "Software che funziona solo offline", correct: false },
+    { text: "Tecnologia basata su sensori ottici", correct: false }
+  ]},
+  { text: "Qual è lo scopo della crittografia?", options: [
+    { text: "Accelerare le connessioni internet", correct: false },
+    { text: "Proteggere i dati e le comunicazioni", correct: true },
+    { text: "Controllare i social media", correct: false },
+    { text: "Registrare video in segreto", correct: false }
+  ]},
+  { text: "Che cos’è il metaverso?", options: [
+    { text: "Un nuovo pianeta", correct: false },
+    { text: "Una realtà virtuale condivisa e immersiva", correct: true },
+    { text: "Un codice binario", correct: false },
+    { text: "Una valuta elettronica", correct: false }
+  ]},
 
-      // Livello 5 (41-50)
-      { text: "Qual è il ruolo dell’intelligenza artificiale nella vita multiplanetaria?", options: [
-        { text: "Sostituire completamente gli astronauti umani", correct: false },
-        { text: "Assistere nelle missioni con analisi dati e automazione", correct: true },
-        { text: "Solo comunicare con la Terra", correct: false },
-        { text: "Costruire case automatiche sulla Luna", correct: false }
-      ]},
-      { text: "Cos'è la sostenibilità ambientale nel contesto spaziale?", options: [
-        { text: "Usare risorse infinite senza limiti", correct: false },
-        { text: "Minimizzare l’impatto ecologico nelle colonie spaziali", correct: true },
-        { text: "Esplorare senza regole", correct: false },
-        { text: "Trasportare più rifiuti sulla Terra", correct: false }
-      ]},
-      { text: "Cosa significa 'terraformazione'?", options: [
-        { text: "Creare un robot terraform", correct: false },
-        { text: "Trasformare un pianeta per renderlo abitabile", correct: true },
-        { text: "Un tipo di energia spaziale", correct: false },
-        { text: "Un satellite di osservazione", correct: false }
-      ]},
-      { text: "Quale tecnologia aiuta nella gestione efficiente delle risorse idriche?", options: [
-        { text: "Sensori IoT e sistemi di monitoraggio", correct: true },
-        { text: "Motori a combustione", correct: false },
-        { text: "Lampade a incandescenza", correct: false },
-        { text: "Macchine da scrivere", correct: false }
-      ]},
-      { text: "Qual è una sfida etica della vita multiplanetaria?", options: [
-        { text: "Assicurare equità e rispetto per tutte le forme di vita", correct: true },
-        { text: "Escludere chi non è nato nello spazio", correct: false },
-        { text: "Ignorare le leggi terrestri", correct: false },
-        { text: "Conquistare altri pianeti senza regole", correct: false }
-      ]},
-      { text: "Come può l’IA migliorare la vita nelle città del futuro?", options: [
-        { text: "Automatizzando i servizi pubblici e migliorando la qualità della vita", correct: true },
-        { text: "Eliminando la privacy totale", correct: false },
-        { text: "Aumentando il traffico veicolare", correct: false },
-        { text: "Rimpiazzando tutte le persone con robot", correct: false }
-      ]},
-      { text: "Cos’è un’energia pulita e rinnovabile?", options: [
-        { text: "Energia che si esaurisce rapidamente", correct: false },
-        { text: "Energia prodotta senza emissioni nocive e inesauribile", correct: true },
-        { text: "Energia derivante da combustibili fossili", correct: false },
-        { text: "Energia creata da fonti sconosciute", correct: false }
-      ]},
-      { text: "Qual è il principale vantaggio dell’economia circolare?", options: [
-        { text: "Aumentare i rifiuti", correct: false },
-        { text: "Ridurre lo spreco e riutilizzare risorse", correct: true },
-        { text: "Incentivare il consumo rapido", correct: false },
-        { text: "Ignorare il riciclo", correct: false }
-      ]},
-      { text: "Cosa significa etica nell’uso dell’intelligenza artificiale?", options: [
-        { text: "Seguire principi di giustizia, trasparenza e sicurezza", correct: true },
-        { text: "Usare l’IA per manipolare le persone", correct: false },
-        { text: "Non controllare mai i sistemi", correct: false },
-        { text: "Sostituire la morale umana", correct: false }
-      ]},
-      { text: "Quale sarà una delle principali risorse per le future colonie spaziali?", options: [
-        { text: "Acqua riciclata e aria rigenerata", correct: true },
-        { text: "Carburante fossile", correct: false },
-        { text: "Legna da ardere", correct: false },
-        { text: "Carbone", correct: false }
-      ]}
-    ];
+  // Livello 4 (31-40)
+  { text: "Che cos'è l'agricoltura verticale?", options: [
+    { text: "Una tecnica per coltivare su pareti o edifici in altezza", correct: true },
+    { text: "Una forma di giardinaggio zen", correct: false },
+    { text: "Un metodo di scavo per coltivazioni sotterranee", correct: false },
+    { text: "Una teoria economica sulla distribuzione dei raccolti", correct: false }
+  ]},
+  { text: "Quale tecnologia permette il controllo remoto di oggetti fisici tramite internet?", options: [
+    { text: "Blockchain", correct: false },
+    { text: "IoT (Internet of Things)", correct: true },
+    { text: "Cloud Gaming", correct: false },
+    { text: "Big Data", correct: false }
+  ]},
+  { text: "Qual è uno dei principali rischi legati al riconoscimento facciale?", options: [
+    { text: "Aumento dell’autostima", correct: false },
+    { text: "Violazione della privacy", correct: true },
+    { text: "Incapacità di identificare animali", correct: false },
+    { text: "Troppo consumo di batteria", correct: false }
+  ]},
+  { text: "Cos'è un gemello digitale (digital twin)?", options: [
+    { text: "Un videogioco con grafica 3D", correct: false },
+    { text: "Una copia virtuale di un oggetto o sistema fisico", correct: true },
+    { text: "Un social network alternativo", correct: false },
+    { text: "Un software per riconoscere i parenti", correct: false }
+  ]},
+  { text: "A cosa serve una smart grid?", options: [
+    { text: "Distribuire elettricità in modo efficiente e intelligente", correct: true },
+    { text: "Caricare smartphone più velocemente", correct: false },
+    { text: "Navigare online con maggiore sicurezza", correct: false },
+    { text: "Gestire i contenuti social automaticamente", correct: false }
+  ]},
+  { text: "Cos’è l’e-waste?", options: [
+    { text: "Energia eolica accumulata", correct: false },
+    { text: "Rifiuto elettronico", correct: true },
+    { text: "Software per riciclare musica digitale", correct: false },
+    { text: "Un tipo di cibo sintetico", correct: false }
+  ]},
+  { text: "Qual è lo scopo del greenwashing?", options: [
+    { text: "Pulire ambienti industriali", correct: false },
+    { text: "Far sembrare un’azienda ecologica senza esserlo", correct: true },
+    { text: "Ottimizzare l’agricoltura biologica", correct: false },
+    { text: "Aumentare l’efficienza dei pannelli solari", correct: false }
+  ]},
+  { text: "Che cosa si intende per cittadinanza digitale?", options: [
+    { text: "L’acquisto di cittadinanza online", correct: false },
+    { text: "L’uso consapevole e responsabile della tecnologia", correct: true },
+    { text: "L’identità sui social", correct: false },
+    { text: "Un passaporto elettronico globale", correct: false }
+  ]},
+  { text: "Qual è l’obiettivo della bioeconomia?", options: [
+    { text: "Sfruttare risorse biologiche in modo sostenibile", correct: true },
+    { text: "Aumentare la produzione chimica", correct: false },
+    { text: "Espandere l’allevamento intensivo", correct: false },
+    { text: "Ridurre l’uso di bioplastiche", correct: false }
+  ]},
+  { text: "Cosa significa resilienza urbana?", options: [
+    { text: "Capacità di una città di adattarsi e riprendersi da crisi", correct: true },
+    { text: "Costruire solo grattacieli", correct: false },
+    { text: "Espandere il trasporto pubblico", correct: false },
+    { text: "Aumentare le tasse cittadine", correct: false }
+  ]},
 
-    let currentIndex = 0;
-    const questionNumber = document.getElementById("question-number");
-    const questionText = document.getElementById("question-text");
-    const optionsBox = document.getElementById("options");
-    const feedback = document.getElementById("feedback");
-    const retryButton = document.getElementById("retry");
-    const letterBox = document.getElementById("letter");
-    const finalMessage = document.getElementById("finalMessage");
-    const proceedButton = document.getElementById("proceed");
+  // Livello 5 (41-50)
+  { text: "Qual è il ruolo dell’intelligenza artificiale nella vita multiplanetaria?", options: [
+    { text: "Sostituire completamente gli astronauti umani", correct: false },
+    { text: "Assistere nelle missioni con analisi dati e automazione", correct: true },
+    { text: "Solo comunicare con la Terra", correct: false },
+    { text: "Costruire case automatiche sulla Luna", correct: false }
+  ]},
+  { text: "Cos'è la sostenibilità ambientale nel contesto spaziale?", options: [
+    { text: "Usare risorse infinite senza limiti", correct: false },
+    { text: "Minimizzare l’impatto ecologico nelle colonie spaziali", correct: true },
+    { text: "Esplorare senza regole", correct: false },
+    { text: "Trasportare più rifiuti sulla Terra", correct: false }
+  ]},
+  { text: "Cosa significa 'terraformazione'?", options: [
+    { text: "Creare un robot terraform", correct: false },
+    { text: "Trasformare un pianeta per renderlo abitabile", correct: true },
+    { text: "Un tipo di energia spaziale", correct: false },
+    { text: "Un satellite di osservazione", correct: false }
+  ]},
+  { text: "Quale tecnologia aiuta nella gestione efficiente delle risorse idriche?", options: [
+    { text: "Sensori IoT e sistemi di monitoraggio", correct: true },
+    { text: "Motori a combustione", correct: false },
+    { text: "Lampade a incandescenza", correct: false },
+    { text: "Macchine da scrivere", correct: false }
+  ]},
+  { text: "Qual è una sfida etica della vita multiplanetaria?", options: [
+    { text: "Assicurare equità e rispetto per tutte le forme di vita", correct: true },
+    { text: "Escludere chi non è nato nello spazio", correct: false },
+    { text: "Ignorare le leggi terrestri", correct: false },
+    { text: "Conquistare altri pianeti senza regole", correct: false }
+  ]},
+  { text: "Come può l’IA migliorare la vita nelle città del futuro?", options: [
+    { text: "Automatizzando i servizi pubblici e migliorando la qualità della vita", correct: true },
+    { text: "Eliminando la privacy totale", correct: false },
+    { text: "Aumentando il traffico veicolare", correct: false },
+    { text: "Rimpiazzando tutte le persone con robot", correct: false }
+  ]},
+  { text: "Cos’è un’energia pulita e rinnovabile?", options: [
+    { text: "Energia che si esaurisce rapidamente", correct: false },
+    { text: "Energia prodotta senza emissioni nocive e inesauribile", correct: true },
+    { text: "Energia derivante da combustibili fossili", correct: false },
+    { text: "Energia creata da fonti sconosciute", correct: false }
+  ]},
+  { text: "Qual è il principale vantaggio dell’economia circolare?", options: [
+    { text: "Aumentare i rifiuti", correct: false },
+    { text: "Ridurre lo spreco e riutilizzare risorse", correct: true },
+    { text: "Incentivare il consumo rapido", correct: false },
+    { text: "Ignorare il riciclo", correct: false }
+  ]},
+  { text: "Cosa significa etica nell’uso dell’intelligenza artificiale?", options: [
+    { text: "Seguire principi di giustizia, trasparenza e sicurezza", correct: true },
+    { text: "Usare l’IA per manipolare le persone", correct: false },
+    { text: "Non controllare mai i sistemi", correct: false },
+    { text: "Sostituire la morale umana", correct: false }
+  ]},
+  { text: "Quale sarà una delle principali risorse per le future colonie spaziali?", options: [
+    { text: "Acqua riciclata e aria rigenerata", correct: true },
+    { text: "Carburante fossile", correct: false },
+    { text: "Legna da ardere", correct: false },
+    { text: "Carbone", correct: false }
+  ]}
+];
 
-    proceedButton.addEventListener('click', () => {
-      letterBox.style.display = "none";
-      proceedButton.style.display = "none";
+let currentIndex = 0;
+const questionNumber = document.getElementById("question-number");
+const questionText = document.getElementById("question-text");
+const optionsBox = document.getElementById("options");
+const feedback = document.getElementById("feedback");
+const retryButton = document.getElementById("retry");
+const letterBox = document.getElementById("letter");
+const finalMessage = document.getElementById("finalMessage");
+const proceedButton = document.getElementById("proceed");
+
+proceedButton.addEventListener('click', () => {
+  letterBox.style.display = "none";
+  proceedButton.style.display = "none";
+  showQuestion();
+});
+
+function showQuestion() {
+  if(currentIndex >= scenes.length){
+    showFinalMessage();
+    return;
+  }
+  const current = scenes[currentIndex];
+  questionNumber.textContent = `Domanda ${currentIndex + 1} di ${scenes.length}`;
+  questionText.textContent = current.text;
+  optionsBox.innerHTML = "";
+  feedback.textContent = "";
+  retryButton.style.display = "none";
+  letterBox.style.display = "none";
+  proceedButton.style.display = "none";
+  finalMessage.style.display = "none";
+
+  current.options.forEach((option, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = option.text;
+    btn.setAttribute('role', 'listitem');
+    btn.onclick = () => checkAnswer(option.correct);
+    optionsBox.appendChild(btn);
+  });
+}
+
+function checkAnswer(isCorrect) {
+  if (isCorrect) {
+    currentIndex++;
+    if (currentIndex % 10 === 0 && currentIndex !== 0 && currentIndex < scenes.length) {
+      showLetter();
+    } else {
       showQuestion();
-    });
-
-    function showQuestion() {
-      if(currentIndex >= scenes.length){
-        showFinalMessage();
-        return;
-      }
-      const current = scenes[currentIndex];
-      questionNumber.textContent = `Domanda ${currentIndex + 1} di ${scenes.length}`;
-      questionText.textContent = current.text;
-      optionsBox.innerHTML = "";
-      feedback.textContent = "";
-      retryButton.style.display = "none";
-      letterBox.style.display = "none";
-      proceedButton.style.display = "none";
-      finalMessage.style.display = "none";
-
-      current.options.forEach((option, i) => {
-        const btn = document.createElement("button");
-        btn.textContent = option.text;
-        btn.setAttribute('role', 'listitem');
-        btn.onclick = () => checkAnswer(option.correct);
-        optionsBox.appendChild(btn);
-      });
     }
+  } else {
+    feedback.textContent = "❌ Risposta errata.";
+    retryButton.style.display = "block";
+  }
+}
 
-    function checkAnswer(isCorrect) {
-      if (isCorrect) {
-        currentIndex++;
-        if (currentIndex % 10 === 0 && currentIndex !== 0 && currentIndex < scenes.length) {
-          showLetter();
-        } else {
-          showQuestion();
-        }
-      } else {
-        feedback.textContent = "❌ Risposta errata.";
-        retryButton.style.display = "block";
-      }
-    }
+function retryLevel() {
+  const level = Math.floor(currentIndex / 10);
+  currentIndex = level * 10;
+  showQuestion();
+  feedback.textContent = "";
+  retryButton.style.display = "none";
+  letterBox.style.display = "none";
+  finalMessage.style.display = "none";
+  proceedButton.style.display = "none";
+}
 
-    function retryLevel() {
-      const level = Math.floor(currentIndex / 10);
-      currentIndex = level * 10;
-      showQuestion();
-      feedback.textContent = "";
-      retryButton.style.display = "none";
-      letterBox.style.display = "none";
-      finalMessage.style.display = "none";
-      proceedButton.style.display = "none";
-    }
+function showLetter() {
+  const letters = [
+    `Hai superato il Livello 1!\n\nCaro terrestre,\nnel 2120 il sole fornisce il 90% dell'energia. Abbiamo imparato a rispettare i ritmi naturali. Conserva questa lezione: le scelte di oggi plasmano il mondo di domani.`,
+    `Hai superato il Livello 2!\n\nCara mente curiosa,\nnel futuro gli algoritmi etici sono obbligatori. L'intelligenza artificiale coopera con l'uomo, non lo sostituisce. La consapevolezza etica è diventata il nuovo oro.`,
+    `Hai superato il Livello 3!\n\nViaggiatori dello spazio,\nMarte è la nostra seconda casa. Le colonie sono verdi, autosufficienti, e imparano dai nostri errori sulla Terra. Ogni gesto conta.`,
+    `Hai superato il Livello 4!\n\nPioniere del futuro,\nil mondo è interconnesso. L'acqua è protetta da una costituzione globale. La tecnologia non comanda, ma serve. Rendi questo futuro possibile.`,
+    `Hai superato il Livello 5!\n\nComplimenti!\nLa tua coscienza è pronta a scrivere il futuro. Continua a pensare, sognare, e agire. La storia dell’Homo sapiens non è finita, ma ha appena iniziato una nuova era.`
+  ];
 
-    function showLetter() {
-      const letters = [
-        `Hai superato il Livello 1!\n\nCaro terrestre,\nnel 2120 il sole fornisce il 90% dell'energia. Abbiamo imparato a rispettare i ritmi naturali. Conserva questa lezione: le scelte di oggi plasmano il mondo di domani.`,
-        `Hai superato il Livello 2!\n\nCara mente curiosa,\nnel futuro gli algoritmi etici sono obbligatori. L'intelligenza artificiale coopera con l'uomo, non lo sostituisce. La consapevolezza etica è diventata il nuovo oro.`,
-        `Hai superato il Livello 3!\n\nViaggiatori dello spazio,\nMarte è la nostra seconda casa. Le colonie sono verdi, autosufficienti, e imparano dai nostri errori sulla Terra. Ogni gesto conta.`,
-        `Hai superato il Livello 4!\n\nPioniere del futuro,\nil mondo è interconnesso. L'acqua è protetta da una costituzione globale. La tecnologia non comanda, ma serve. Rendi questo futuro possibile.`,
-        `Hai superato il Livello 5!\n\nComplimenti!\nLa tua coscienza è pronta a scrivere il futuro. Continua a pensare, sognare, e agire. La storia dell’Homo sapiens non è finita, ma ha appena iniziato una nuova era.`
-      ];
-
-      const levelIndex = Math.floor((currentIndex - 1) / 10);
-      if (letters[levelIndex]) {
-        letterBox.textContent = letters[levelIndex];
-        letterBox.style.display = "block";
-        proceedButton.style.display = "inline-block";
-        proceedButton.focus();
-      } else {
-        showQuestion();
-      }
-    }
-
-    function showFinalMessage() {
-      questionNumber.textContent = "";
-      questionText.textContent = "";
-      optionsBox.innerHTML = "";
-      feedback.textContent = "";
-      retryButton.style.display = "none";
-      letterBox.style.display = "none";
-      proceedButton.style.display = "none";
-
-      finalMessage.style.display = "block";
-      finalMessage.textContent = `🎉 Congratulazioni! Hai completato con successo il quiz Futuro da Homo Sapiens.\n\n` +
-        `Nel futuro che hai appena esplorato, l’umanità ha superato sfide incredibili, aprendosi a una nuova era di armonia tra tecnologia, natura e coscienza. ` +
-        `Le colonie multiplanetarie prosperano grazie all’innovazione responsabile, e ogni persona contribuisce a un mondo sostenibile, etico e giusto.\n\n` +
-        `Il viaggio dell’Homo sapiens continua, e tu sei parte di questa grande storia. Continua a imparare, a sognare, e a costruire il futuro che desideri.`;
-      finalMessage.focus();
-    }
-
+  const levelIndex = Math.floor((currentIndex - 1) / 10);
+  if (letters[levelIndex]) {
+    letterBox.textContent = letters[levelIndex];
+    letterBox.style.display = "block";
+    proceedButton.style.display = "inline-block";
+    proceedButton.focus();
+  } else {
     showQuestion();
-  </script>
+  }
+}
+
+function showFinalMessage() {
+  questionNumber.textContent = "";
+  questionText.textContent = "";
+  optionsBox.innerHTML = "";
+  feedback.textContent = "";
+  retryButton.style.display = "none";
+  letterBox.style.display = "none";
+  proceedButton.style.display = "none";
+
+  finalMessage.style.display = "block";
+  finalMessage.textContent = `🎉 Congratulazioni! Hai completato con successo il quiz Futuro da Homo Sapiens.\n\n` +
+    `Nel futuro che hai appena esplorato, l’umanità ha superato sfide incredibili, aprendosi a una nuova era di armonia tra tecnologia, natura e coscienza. ` +
+    `Le colonie multiplanetarie prosperano grazie all’innovazione responsabile, e ogni persona contribuisce a un mondo sostenibile, etico e giusto.\n\n` +
+    `Il viaggio dell’Homo sapiens continua, e tu sei parte di questa grande storia. Continua a imparare, a sognare, e a costruire il futuro che desideri.`;
+  finalMessage.focus();
+}
+
+showQuestion();
+</script>
 </body>
 </html>
+
 
